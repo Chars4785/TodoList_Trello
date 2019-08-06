@@ -70,7 +70,7 @@ function Header(){
              <TiHomeOutline />
             </HeaderBar_Home>
             <HeaderBar_item />
-            <HeaderBar_UserB>J</HeaderBar_UserB>
+            <HeaderBar_Home>J</HeaderBar_Home>
         </HeaderBar>
     );
 }
