@@ -1,0 +1,17 @@
+
+.list{
+
+    background: #172b4d;
+    border-radius:16px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.04);
+    opacity: 0.5;
+    
+    color: white;
+    width: 272px;
+    margin: 0 4px;
+    height: 100%;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: top;
+    white-space: nowrap;
+}

@@ -1,29 +1,45 @@
 import React from 'react';
 import styled from 'styled-components';
+import '../Css/TodoTemplateCss.css';
+import {MdSchedule} from 'react-icons/md';
+
 /* 값을 받아와서 테이블 만들기 */
 
-const Template = styled.div`
-    background: white;
-    border-radius:16px;
-    box-shadow: 0 0 8px rgba(0,0,0,0.04);
-    opacity: 0.5;
+const Cards = styled.div`
+    background-color: #ffffff;
+    margin: 0 10px 10px;
 
-    width: 272px;
-    margin: 0 4px;
-    height: 100%;
-    box-sizing: border-box;
-    display: inline-block;
-    vertical-align: top;
-    white-space: nowrap;
+    &:hover{
+        background-color : red;
+    }
+
+
 `;
 
-function TodoTemplate(){
+function List({props}){
+
+    return (
+            <div class="list">
+                {props.list_name}
+                {
+                    props.Card.map(t=>(<Cards>{t.card_name}</Cards>))
+                }
+                <MdSchedule />
+            </div>           
+    );
+}
+
+
+function TodoTemplate({user}){
     return(
         <>
-        <Template>here</Template>
+            {
+                user.map(
+                    props =>(<List props={props}></List>)
+                )
+            }
         </>
     );
-
 }
 
 

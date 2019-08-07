@@ -3,6 +3,8 @@ import {createGlobalStyle} from 'styled-components';
 import Header from './Components/Header';
 import TodoTemplate from './Components/TodoTemplate';
 import styled from 'styled-components';
+import './Components/Inform';
+import { Users } from './Components/Inform';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -22,6 +24,7 @@ const MenuLine = styled.div`
 `;
     
 
+
 function App() {
   return (
     <>
@@ -29,7 +32,8 @@ function App() {
       <Header>
       </Header>
       <MenuLine />
-      <TodoTemplate />
+
+      <TodoTemplate user={Users}  />
  
     
     </>
