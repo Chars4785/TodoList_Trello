@@ -29,4 +29,9 @@ export const Users = [
             }
         ]
     },
+    {
+        list_id: 3,
+        list_name: 'Empty',
+        Card :[]
+    },
 ];
