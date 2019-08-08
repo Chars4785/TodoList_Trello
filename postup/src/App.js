@@ -5,6 +5,8 @@ import TodoTemplate from './Components/TodoTemplate';
 import styled from 'styled-components';
 import './Components/Inform';
 import { Users } from './Components/Inform';
+import AddList from './Components/AddList';
+import Template from './Components/Template';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -23,18 +25,19 @@ const MenuLine = styled.div`
 
 `;
     
-
-
 function App() {
   return (
     <>
       <GlobalStyle />
-      <Header>
-      </Header>
+      <Header />
       <MenuLine />
 
-      <TodoTemplate user={Users}  />
- 
+      <Template>
+        <TodoTemplate user={Users}/>
+        <AddList />
+      </Template>
+      
+      
     
     </>
   );
