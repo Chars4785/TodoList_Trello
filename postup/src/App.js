@@ -36,9 +36,6 @@ function App() {
         <TodoTemplate user={Users}/>
         <AddList />
       </Template>
-      
-      
-    
     </>
   );
 }
