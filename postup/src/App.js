@@ -10,6 +10,7 @@ import Template from './Components/Template';
 import { Route } from 'react-router-dom';
 import { Login, About } from './pages';
 import axios from 'axios';
+import Post from './Post';
 
 
 const GlobalStyle = createGlobalStyle`
@@ -51,9 +52,8 @@ class App extends Component {
     render() {
         return (
           <>
-          <Header />
-                <Route exact path="/" component={Login}/>
-                <Route path="/about" component={About}/>
+          <h1>asdasd</h1>
+            <Post />
           </>
         );
     }
@@ -64,6 +64,11 @@ export default App;
 
 
 /*
+
+
+<Header />
+                <Route exact path="/" component={Login}/>
+                <Route path="/about" component={About}/>
 
 <GlobalStyle />
      <Header />
