@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import {TiHomeOutline} from 'react-icons/ti'
+import {TiHomeOutline} from 'react-icons/ti';
+import { Manager,Target, Reference, Popper } from 'react-popper';
 
-const HeaderBar = styled.div`
+    const HeaderBar = styled.div`
     background: rgba(0,0,0,.35);   
     padding: 10px;
     display: flex;
@@ -20,7 +21,6 @@ const HeaderBar_Home = styled.button`
 
     /*버튼 스타일*/
     cursor:pointer;
-    color: white;
     margin-right: 16px;
     font-size: 40px;
     border-radius: 5px;
@@ -63,15 +63,44 @@ const HeaderBar_item = styled.div`
     box-sizing: border-box;
 `;
 
+
+
+const Example = () => (
+  <Manager>
+    <Reference>
+      {({ ref }) => (
+        <button type="button" ref={ref}>
+          Reference element
+        </button>
+      )}
+    </Reference>
+    <Popper placement="right">
+      {({ ref, style, placement, arrowProps }) => (
+        <div ref={ref} style={style} data-placement={placement}>
+          Popper element
+          <div ref={arrowProps.ref} style={arrowProps.style} />
+        </div>
+      )}
+    </Popper>
+  </Manager>
+);
+
 function Header(){
+
+  
     return(
+        
         <HeaderBar>
             <HeaderBar_Home>
              <TiHomeOutline />
             </HeaderBar_Home>
             <HeaderBar_item />
+            
             <HeaderBar_Home>J</HeaderBar_Home>
         </HeaderBar>
+
+   
+
     );
 }
 

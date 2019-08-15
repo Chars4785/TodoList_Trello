@@ -7,6 +7,8 @@ import './Components/Inform';
 import { Users } from './Components/Inform';
 import AddList from './Components/AddList';
 import Template from './Components/Template';
+import Login from './pages/Login';
+import { BrowserRouter } from 'react-router-dom';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -28,6 +30,19 @@ const MenuLine = styled.div`
 function App() {
   return (
     <>
+    <BrowserRouter>
+      <Header />
+      <Login />
+    </BrowserRouter>
+    </>
+  );
+}
+
+export default App;
+
+
+/*
+
       <GlobalStyle />
       <Header />
       <MenuLine />
@@ -36,8 +51,6 @@ function App() {
         <TodoTemplate user={Users}/>
         <AddList />
       </Template>
-    </>
-  );
-}
 
-export default App;
+
+*/
