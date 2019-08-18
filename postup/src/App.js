@@ -7,8 +7,12 @@ import './Components/Inform';
 import { Users } from './Components/Inform';
 import AddList from './Components/AddList';
 import Template from './Components/Template';
-import Login from './pages/Login';
 import { BrowserRouter } from 'react-router-dom';
+import LoginPage from './loginComponents/LoginPage';
+import Login from './loginComponents/Login';
+import { Route } from 'react-router-dom';
+import New from './loginComponents/New';
+import {UserContext} from './UserContext';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -30,11 +34,16 @@ const MenuLine = styled.div`
 function App() {
   return (
     <>
-    <BrowserRouter>
-      <Header />
-      <Login />
-    </BrowserRouter>
-    </>
+      <BrowserRouter>
+      <UserContext>
+      <Header />      
+          <Route exact path="/" component={LoginPage}/>
+          <Route path="/Login" component={Login}/>
+          <Route path="/New" component={New}/>
+        </UserContext>
+      </BrowserRouter>
+      
+      </>
   );
 }
 
@@ -43,6 +52,7 @@ export default App;
 
 /*
 
+    
       <GlobalStyle />
       <Header />
       <MenuLine />
@@ -51,6 +61,4 @@ export default App;
         <TodoTemplate user={Users}/>
         <AddList />
       </Template>
-
-
 */

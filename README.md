@@ -1,6 +1,5 @@
 TodoList_Trello
 
-<<<<<<< Updated upstream
 ## Making Working space
 <hr>
 
@@ -14,6 +13,14 @@ React Project
 - Spring Api 서버와 ajax 통신을 합니다. 
 - 트렐로를 모티브로 만든 웹입니다.
 
-=======
-## making Trello
->>>>>>> Stashed changes
+## API
+
+- axios
+- react-router
+
+
+## styled
+
+- sass
+
+
