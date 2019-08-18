@@ -1,19 +1,20 @@
-import React,{useState,useContext,createContext} from 'react';
+import React,{useState,createContext} from 'react';
 
-const User ={
-  id:'',
+const Users ={
+  id:'asd',
   pwd:''
 }
 
-const UserInformContext = createContext();
+export const UserInformContext = createContext();
+const UserSetContext = createContext();
 
-export function UserContext({children}){
-  const[user,setUser] = useState(User);
+export  function UserContext({children}){
+  const[user,setUser] = useState(Users);
 
   return(
-    <UserInformContext.provide value={user}>
+    <UserInformContext.Provider value={user}>
       {children}
-    </UserInformContext.provide>
+    </UserInformContext.Provider>
   );
 }
 

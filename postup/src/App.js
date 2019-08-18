@@ -1,18 +1,8 @@
 import React from 'react';
 import {createGlobalStyle} from 'styled-components';
-import Header from './Components/Header';
-import TodoTemplate from './Components/TodoTemplate';
 import styled from 'styled-components';
-import './Components/Inform';
-import { Users } from './Components/Inform';
-import AddList from './Components/AddList';
-import Template from './Components/Template';
-import { BrowserRouter } from 'react-router-dom';
+import {Switch,Route} from 'react-router-dom';
 import LoginPage from './loginComponents/LoginPage';
-import Login from './loginComponents/Login';
-import { Route } from 'react-router-dom';
-import New from './loginComponents/New';
-import {UserContext} from './UserContext';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -34,16 +24,8 @@ const MenuLine = styled.div`
 function App() {
   return (
     <>
-      <BrowserRouter>
-      <UserContext>
-      <Header />      
-          <Route exact path="/" component={LoginPage}/>
-          <Route path="/Login" component={Login}/>
-          <Route path="/New" component={New}/>
-        </UserContext>
-      </BrowserRouter>
-      
-      </>
+      <Route path="/" component={LoginPage}></Route>
+    </>
   );
 }
 
