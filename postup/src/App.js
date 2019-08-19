@@ -2,11 +2,12 @@ import React from 'react';
 import {createGlobalStyle} from 'styled-components';
 import styled from 'styled-components';
 import {Switch,Route} from 'react-router-dom';
-import LoginPage from './loginComponents/LoginPage';
+import {LoginPage,Login} from './loginComponents';
+import {Header} from './Components';
 
 const GlobalStyle = createGlobalStyle`
     body {
-      background : #e9ecef;
+      background : white;
     }
 `;
 
@@ -24,7 +25,11 @@ const MenuLine = styled.div`
 function App() {
   return (
     <>
-      <Route path="/" component={LoginPage}></Route>
+    <GlobalStyle />
+    <Header />
+    <MenuLine />
+      <Route exact path="/" component={LoginPage}></Route>
+      <Route exact path="/Login" component={Login}></Route>
     </>
   );
 }
@@ -35,9 +40,7 @@ export default App;
 /*
 
     
-      <GlobalStyle />
-      <Header />
-      <MenuLine />
+      
 
       <Template>
         <TodoTemplate user={Users}/>
