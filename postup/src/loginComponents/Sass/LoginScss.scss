@@ -1,0 +1,50 @@
+.Board{
+  position: relative;
+  flex-grow: 1;
+  display: flex;
+  justify-content: row;
+}
+
+
+.List{
+    height:100%;
+    width: 20%;
+    background-color: #dfe1e6;
+    border-radius:16px;
+    box-shadow: 0 0 8px rgba(0,0,0,0.04);
+    margin-left: 8px;
+
+    .list_board{
+        padding: 10px;
+        border-bottom: 1px solid #20c997;
+        display: flex;
+        justify-content: center;
+        margin: 10px;   
+        font-size:20px;
+        color: #000000;
+    }
+
+    .card_list{
+
+      margin: 10px; 
+      padding: 6px 8px 2px;
+      font-size: 20px;
+      background-color: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 0 rgba(9,30,66,.25);
+      cursor: pointer;
+      &:hover{
+        background-color: rgb(233, 229, 229);
+      }
+    }
+
+    .add{
+        color: #20c997;
+        font-size:18px;
+        margin-top:40px;
+        font-weight:bold;
+        border: #5e5e5e
+    }
+}
+
+
