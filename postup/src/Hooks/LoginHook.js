@@ -1,26 +1,24 @@
 import { useEffect, useState} from 'react';
 import axios from 'axios';
 
-function LoginHook(url){
-  //console.log(userprops);
- 
-  const [response,resSet] = useState(null);
-
-  useEffect(
-    async () => {
-      try {
-        const res = await axios.post(url); // 실제 요청
-        resSet(res);
-      } catch (e) {
-        console.log(e);
-      }
-    },
-    url // url 이 바뀔때만 실행됨
-  );
-  return response;
+const LoginHook = async(url,user,userSet) => {
+  const res = await axios.post(url,user)
+      .then(function (response) {
+        console.log("데이터왔어!!");
+      })
+      .catch(function (error) {
+        console.log(error);
+        console.log("데이터 안옴");
+      });
+    
+      
+  
 }
 
 export default LoginHook;
+
+
+
 // const LoginHook= (url,{userprops}) =>{
   // const [loading, setLoading] = useState(false);
   // const [response, setResponse] = useState(null);
