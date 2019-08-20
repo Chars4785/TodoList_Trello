@@ -3,15 +3,14 @@ import { Link } from 'react-router-dom';
 import {UserInformContext} from '../UserContext';
 import LoginHook from '../Hooks/LoginHook';
 import axios from 'axios';
+import {LoginForm,LoginPageDiv,LoginInput,Button} from './Sass/LoginPageCss';
 
 function LoginPage(){
   const [user,userSet] = useState({
-    id:'',
-    pwd:''
+    user_id:'',
+    password:''
   });
-  const [result,resultSet] = useState({
-    result:''
-  });
+  
   const context = useContext(UserInformContext);
   const onChange = e =>{
     const{name,value} = e.target;
@@ -21,27 +20,32 @@ function LoginPage(){
     })
   }
 
-  const onSubmit = e =>{
+  const onSubmit = async(e) =>{
     e.preventDefault();
-    LoginHook('http://localhost:8080/mvcexam1/test',user,resultSet);
+     const result = await LoginHook('http://192.168.30.145:8080/user/login_user',user)
+      .then(function(response){
+          console.log(response);
+      }).catch(function(erro){
+          console.log("데이터오류")
+      })
   }
   
+
+
   return(
     <>
-    <form onSubmit={onSubmit}>
-      <input name="id" type="text" onChange={onChange}></input><br />
-      <input name="pwd" type="password" onChange={onChange}></input> <br />
-      <button>로그인</button>
-    </form>
-    <button onClick={()=>console.log(result)}>sadasd</button>
-      <Link to ="/Login">로그인 연습</Link> <br></br>
-      <Link to="/New" className="nav-link"><br />
+    <LoginForm onSubmit={onSubmit}>
+      <LoginInput name="user_id" type="text" placeholder="아이디" onChange={onChange}></LoginInput>
+      <LoginInput name="password" type="password" placeholder="비밀번호" onChange={onChange}></LoginInput>
+      <Button>로그인</Button>
+      <Link to ="/Login">로그인 연습</Link> 
+      <Link to="/New" className="nav-link">
           회원가입
       </Link>
-      
+    </LoginForm>
+    
     </>
   );
 }
-
 
 export default LoginPage;
