@@ -2,12 +2,12 @@ import React from 'react';
 import {createGlobalStyle} from 'styled-components';
 import styled from 'styled-components';
 import {Switch,Route} from 'react-router-dom';
-import {LoginPage,Login} from './loginComponents';
+import {LoginPage,Login,New} from './loginComponents';
 import {Header} from './Components';
 
 const GlobalStyle = createGlobalStyle`
     body {
-      background : white;
+      background: #f5f6f7;
     }
 `;
 
@@ -28,8 +28,11 @@ function App() {
     <GlobalStyle />
     <Header />
     <MenuLine />
+    <Switch>
       <Route exact path="/" component={LoginPage}></Route>
       <Route exact path="/Login" component={Login}></Route>
+      <Route exact path="/New" component={New}></Route>
+    </Switch>
     </>
   );
 }
