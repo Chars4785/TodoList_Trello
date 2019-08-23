@@ -11,12 +11,12 @@ const User ={
 
 const listtemp =[
   {
-    id:'',
-    name:'',
+    id:'listId',
+    name:'listName',
     card:[
       {
-        id:'',
-        name:''
+        id:'cardId',
+        name:'cardName'
       }
     ]
   }
@@ -24,6 +24,9 @@ const listtemp =[
 
 function todoReducer(state,action) {
   switch (action.type) {
+    case 'FIRST':{
+      return state.concat(action.todo);
+    }
     case 'ADDLIST':
       return state.concat(action.todo);
     case 'TOGGLE':
@@ -34,13 +37,16 @@ function todoReducer(state,action) {
     case 'REMOVE':
       return state.filter(todo => todo.id !== action.id);
      default:
-       throw new Error(`Unhandel action type: ${action.type}`);
+       throw "ee";
+       //throw new Error(`Unhandel action type`);
+    }
   }
-}
 
 
 const DoardInformContext = createContext();
-const TodoDispatchContext = createContext();
+export const ListDispatch = createContext();
+
+
 export const UserSetListContext = createContext();
 
 export const UserListContext = createContext();
@@ -49,37 +55,26 @@ export const UserContext = createContext();
 
 export function UserContextProvider({children}){
   const[users,setUser] = useState(User);
-  const[list,setList] = useState([]);
-//  const[state, dispatch] = useReducer(todoReducer,[]);
+  //const[list,setList] = useState(listtemp);
+  const[state,dispatch] = useReducer(todoReducer,[]);
 
   return(
     <UserContext.Provider value={users}>
       <UserSetContext.Provider value={setUser}>
-        <UserListContext.Provider value={list}>
-          <UserSetListContext.Provider value={setList}>
-            {children}
-          </UserSetListContext.Provider>
-        </UserListContext.Provider>
+        <UserListContext.Provider value={state}>
+          
+            <ListDispatch.Provider value={dispatch}>
+              {children}
+            </ListDispatch.Provider>
+          
+          </UserListContext.Provider>
       </UserSetContext.Provider>
     </UserContext.Provider>
   );
 }
 
-export  function SettingUserList(listSet){  
-
-   const result =  LoginHook('http://localhost:8080/mvcexam1/test2',{
-     user_id:User.user_id
-   }).then(function(res){
-    listSet(res); 
-    console.log(res);
-   }).catch(function(error){
-     console.log(error);
-   })
-
-}
-
 export function useTodoDispatch(){
-  const context = useContext(TodoDispatchContext);
+  const context = useContext(ListDispatch);
   if(!context){
     throw new Error('Cannot find TodoProvider');
   }

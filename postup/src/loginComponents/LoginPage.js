@@ -1,6 +1,6 @@
-import  React,{useState,useContext,useEffect} from 'react';
+import  React,{useState,useContext} from 'react';
 import { Link } from 'react-router-dom';
-import { UserSetListContext,SettingUserList} from '../UserContext';
+import { ListDispatch} from '../UserContext';
 import LoginHook from '../Hooks/LoginHook';
 import {
   LoginForm,LoginInput,Button,Loading
@@ -8,19 +8,32 @@ import {
 } from './Sass/LoginPageCss';
 import {UserSetContext} from '../UserContext';
 
-
 function LoginPage(props){
   const[delay,setDelay] = useState(false);
   const[failLogin,setFailLogin] = useState(false);
   const UserSet = useContext(UserSetContext);
-  const listSet = useContext(UserSetListContext);
-
-//  const UserListSet = useContext);
+  
+  //const listSet = useContext(UserSetListContext);
+  const dispatch = useContext(ListDispatch);
 
   const [LoginUser,LoginUserSet] = useState({
     user_id:'',
     password:''
   });
+
+  const SettingUserList =() =>{  
+    const result =  LoginHook('http://localhost:8080/mvcexam1/test2',{
+      user_id:LoginUser.user_id
+    }).then(function(res){
+      console.log(res);
+      dispatch({
+        type:'FIRST',
+        todo:res
+      }) 
+    }).catch(function(error){
+      console.log(error);
+    })
+  }
   
   const onChange = e =>{
     const{name,value} = e.target;
@@ -35,28 +48,29 @@ function LoginPage(props){
      localhost:8080/mvcexam1/test
     const result = await LoginHook('http://localhost:8080/mvcexam1/test',LoginUser)
   */
-
-  const onSubmit = async(e) =>{
+ 
+  const onSubmit = e =>{
     e.preventDefault();
     setFailLogin(false);
     setDelay(true);
 
-    const result = await LoginHook('http://localhost:8080/mvcexam1/test',LoginUser)
+    LoginHook('http://localhost:8080/mvcexam1/test',LoginUser)
     .then(function(response){
           console.log(response);
+
           setTimeout(function(){
             props.history.push('/Login');
           },2000);
           UserSet(LoginUser);
-          SettingUserList(listSet);
+          SettingUserList();
+
         }).catch(function(erro){
           setFailLogin(true);
           setDelay(false);
+          
           console.log("데이터오류")
-        })
+    })
   }
-
-  
 
   return(
     <>
