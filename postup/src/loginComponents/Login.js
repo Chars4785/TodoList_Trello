@@ -1,14 +1,17 @@
-import React,{useState} from 'react';
+import React,{useState,useContext,useEffect} from 'react';
 import LoginHook from '../Hooks/LoginHook';
 import Users from '../Components/Inform';
 import styled,{css} from 'styled-components';
 import { MdAdd } from 'react-icons/md';
 import Detail from '../Components/Detail';
-import {useBoardInform} from '../UserContext';
+import {useList,UserListContext,UserContext,SetList,UserSetListContext} from '../UserContext';
 import {
   CircleButton,InsertFormPositioner,InsertForm,Input, AddList
-  ,BackGround,AddListInput,Board,CardList
+  ,BackGround,AddListInput,Board,CardList,StyleMdADD,
 } from './Sass/LoginCss';
+import {Loading} from './Sass/LoginPageCss';
+import { async } from 'q';
+import { SettingUserList} from '../UserContext';
 
 function List({props}){
   const[open,setOpen] = useState(false);
@@ -16,8 +19,8 @@ function List({props}){
   const[name,setName] = useState('');
   const onToggle = () => setOpen(!open);
   
-  function onClick(props){ 
-    setName(props);
+  function onClick(pro){ 
+    setName(pro);
     setDetail(!detail);
   };
 
@@ -29,11 +32,11 @@ function List({props}){
             </>       
           }
           <CardList>
-                <div className="list_board"><b>{props.list_name}</b></div>
+                <div className="list_board"><b>{props.name}</b></div>
                   {
-                      props.Card.map(t=>(
-                        <div className ="card_list" onClick={()=>onClick(t.card_name)} >
-                          {t.card_name}
+                      props.card.map(t=>(
+                        <div className ="card_list" onClick={()=>onClick(props)} >
+                          {t.name}
                         </div>
                       ))
                   }
@@ -56,27 +59,27 @@ function List({props}){
 
 function Login(){
   const[add,setAdd] = useState(false);
-  const list = useBoardInform();
+  const list = useContext(UserListContext);
+  
   const makeList = () =>{
     setAdd(!add);
   }
+
+  
+
   return(
     <>
-      <Board className="Board">
+      <Board>
         {list.map(props =>(<List props={props}></List>))}
-        
-        
-        {
-          add &&
-          <>
-            <AddListInput type="text" placeholder="이름을 적어주세요"/>            
-            <MdAdd />
-          </>
-        }
         <AddList onClick={makeList} add={add}>
-          <MdAdd />
+        {
+          add ?
+          <AddListInput type="text" autoFocus placeholder="이름을 적어주세요"/>            
+          :<StyleMdADD />
+        }
         </AddList>
       </Board>
+    
     </>
   );
 }

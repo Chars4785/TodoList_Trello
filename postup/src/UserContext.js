@@ -1,57 +1,25 @@
-import React,{useState,createContext,useContext,useReducer} from 'react';
+import React,{useState,createContext,useContext,useReducer,useEffect} from 'react';
+import LoginHook from './Hooks/LoginHook';
+import { async } from 'q';
 
-const Users ={
-  user_id:'asd',
+const User ={
+  user_id:'',
   password:''
+
 }
 
-const Board =[ 
+
+const listtemp =[
   {
-      list_name: "Todo 할거",
-      list_id: 1,
-      Card :[
-          {
-              cards_id: 1,
-              card_name :'first_do'
-          },
-          {
-              cards_id: 2,
-              card_name :'seconde_do'
-          },
-          {
-              cards_id: 3,
-              card_name :'third_do'
-          },
-          {
-              cards_id: 4,
-              card_name :'four_do'
-          }
-      ]
-  },
-  {
-      list_id: 2,
-      list_name: 'Site',
-      Card :[
-          {
-              cards_id: 1,
-              card_name : 'here@naver.com'
-          },
-          {
-              cards_id: 2,
-              card_name : 'thisis@naver.com'
-          }
-      ]
-  },
-  {
-      list_id: 3,
-      list_name: 'Empty',
-      Card :[]
-  },
-  {
-      list_id: 4,
-      list_name: 'Hi',
-      Card :[]
-  },
+    id:'',
+    name:'',
+    card:[
+      {
+        id:'',
+        name:''
+      }
+    ]
+  }
 ];
 
 function todoReducer(state,action) {
@@ -71,37 +39,43 @@ function todoReducer(state,action) {
 }
 
 
-const UserInformContext = createContext();
 const DoardInformContext = createContext();
 const TodoDispatchContext = createContext();
+export const UserSetListContext = createContext();
 
+export const UserListContext = createContext();
 export const UserSetContext = createContext();
+export const UserContext = createContext();
 
-
-export  function UserContext({children}){
-  const[user,setUser] = useState(Users);
-  
-  const[list, dispatch] = useReducer(todoReducer,Board);
+export function UserContextProvider({children}){
+  const[users,setUser] = useState(User);
+  const[list,setList] = useState([]);
+//  const[state, dispatch] = useReducer(todoReducer,[]);
 
   return(
-    <UserInformContext.Provider value={user}>
+    <UserContext.Provider value={users}>
       <UserSetContext.Provider value={setUser}>
-      <DoardInformContext.Provider value={list}>
-        <TodoDispatchContext.Provider value={dispatch}>
-          {children}
-        </TodoDispatchContext.Provider>
-      </DoardInformContext.Provider>
+        <UserListContext.Provider value={list}>
+          <UserSetListContext.Provider value={setList}>
+            {children}
+          </UserSetListContext.Provider>
+        </UserListContext.Provider>
       </UserSetContext.Provider>
-    </UserInformContext.Provider>
+    </UserContext.Provider>
   );
 }
 
-export function useUserInform(){
-  const context = useContext(UserInformContext);
-  if(!context){
-    throw new Error('Cannot find TodoProvider');
-  }
-  return context;
+export  function SettingUserList(listSet){  
+
+   const result =  LoginHook('http://localhost:8080/mvcexam1/test2',{
+     user_id:User.user_id
+   }).then(function(res){
+    listSet(res); 
+    console.log(res);
+   }).catch(function(error){
+     console.log(error);
+   })
+
 }
 
 export function useTodoDispatch(){
