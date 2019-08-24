@@ -1,6 +1,7 @@
 import React,{useState,createContext,useContext,useReducer,useEffect} from 'react';
 import LoginHook from './Hooks/LoginHook';
 import { async } from 'q';
+import {tt} from './TestIn';
 
 const User ={
   user_id:'',
@@ -16,19 +17,36 @@ const listtemp =[
     card:[
       {
         id:'cardId',
-        name:'cardName'
+        name:'cardName',
+        description:'ddd'
       }
     ]
   }
 ];
+
+// return state[action.card_pos].cardlist.push({
+//   "card_name": action.card_name,
+//   "card_description": action.card_description
+// });
 
 function todoReducer(state,action) {
   switch (action.type) {
     case 'FIRST':{
       return state.concat(action.todo);
     }
+    case 'ADDCARD':{
+      const result = LoginHook('http://localhost:8080/mvcexam1/test2',{
+        list_id:action.todo.list_id
+      }).then().catch(()=>{return;});
+      state.filter(t=>t.list_id === action.todo.list_id)[0]
+        .cardlist.push({
+          card_name:action.todo.card_name,
+          card_description:action.todo.card_description
+        });
+        return state;
+    }
     case 'ADDLIST':
-      return state.concat(action.todo);
+      return state.card.concat(action.todo);
     case 'TOGGLE':
       return state.map(
         todo => todo.id === action.id ? { ...todo, done : !todo.done } : todo
@@ -56,8 +74,8 @@ export const UserContext = createContext();
 export function UserContextProvider({children}){
   const[users,setUser] = useState(User);
   //const[list,setList] = useState(listtemp);
-  const[state,dispatch] = useReducer(todoReducer,[]);
-
+  const[state,dispatch] = useReducer(todoReducer,tt);
+  
   return(
     <UserContext.Provider value={users}>
       <UserSetContext.Provider value={setUser}>
