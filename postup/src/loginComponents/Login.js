@@ -1,61 +1,12 @@
-import React,{useState,useContext,useEffect} from 'react';
-import LoginHook from '../Hooks/LoginHook';
-import Users from '../Components/Inform';
-import styled,{css} from 'styled-components';
+import React,{useState,useContext} from 'react';
 import { MdAdd } from 'react-icons/md';
 import Detail from '../Components/Detail';
-import {useList,UserListContext,UserContext,SetList,UserSetListContext} from '../UserContext';
+import {UserListContext} from '../UserContext';
 import {
   CircleButton,InsertFormPositioner,InsertForm,Input, AddList
   ,BackGround,AddListInput,Board,CardList,StyleMdADD,
 } from './Sass/LoginCss';
-import {Loading} from './Sass/LoginPageCss';
-import { async } from 'q';
-import { SettingUserList} from '../UserContext';
-
-function List({props}){
-  const[open,setOpen] = useState(false);
-  const[detail,setDetail] = useState(false);
-  const[name,setName] = useState('');
-  const onToggle = () => setOpen(!open);
-  
-  function onClick(pro){ 
-    setName(pro);
-    setDetail(!detail);
-  };
-
-  return (
-    <>    {detail &&
-            <>
-            <BackGround onClick={onClick} />
-            <Detail props={name} />  
-            </>       
-          }
-          <CardList>
-                <div className="list_board"><b>{props.name}</b></div>
-                  {
-                      props.card.map(t=>(
-                        <div className ="card_list" onClick={()=>onClick(props)} >
-                          {t.name}
-                        </div>
-                      ))
-                  }
-              {open && (
-                  <InsertFormPositioner>
-                      <InsertForm onSubmit={e=>e.preventDefault()}>
-                          <Input placeholder="할 일을 입력 후,Enter"
-                          autoFocus
-                           />
-                      </InsertForm>
-                  </InsertFormPositioner>
-                  )}    
-              <CircleButton onClick={onToggle} open={open}>
-                <MdAdd />
-              </CircleButton> 
-            </CardList>
-      </>
-  );
-}
+import ListForm from './ListForm';
 
 function Login(){
   const[add,setAdd] = useState(false);
@@ -65,12 +16,10 @@ function Login(){
     setAdd(!add);
   }
 
-  
-
   return(
     <>
       <Board>
-        {list.map(props =>(<List props={props}></List>))}
+        {list.map(t =>(<ListForm props={t}></ListForm>))}
         <AddList onClick={makeList} add={add}>
         {
           add ?
