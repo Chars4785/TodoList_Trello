@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 export const tt =[
     {
         "list_id": 3,
@@ -14,12 +13,12 @@ export const tt =[
           {
               "card_name": "card1",
               "card_description": "no",
-              "card_id": 5
+              "card_id": 1
           },
           {
               "card_name": "card2",
               "card_description": "no",
-              "card_id": 6,
+              "card_id": 2,
               "cardcontentlist": [
                   {
                       "cardcontent_id": 7,
@@ -42,20 +41,20 @@ export const tt =[
           {
               "card_name": "card1",
               "card_description": "no",
-              "card_id": 10,
+              "card_id": 3,
               "cardcontentlist":[]
           },
           {
               "card_name": "card2",
               "card_description": "no",
-              "card_id": 11,
+              "card_id": 4,
               "cardcontentlist":[]
 
           },
           {
               "card_name": "card3",
               "card_description": "no",
-              "card_id": 12,
+              "card_id": 5,
               "cardcontentlist":[]
           }
       ]
