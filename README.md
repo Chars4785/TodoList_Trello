@@ -23,4 +23,10 @@ React Project
 
 - sass
 
+## Server
 
+http://localhost:8080 > spring 
+http://localhost:3000 > react 
+
+
+Temporairement, CORS solved by annotation as "CrossOrigin"
