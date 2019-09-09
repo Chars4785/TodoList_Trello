@@ -9,8 +9,8 @@ export const LoginForm = styled.form`
 
     width:512px;
 
-    margin: 0 auto;
-    padding:5%;
+    margin: 5% auto;
+   
 
     background: #fff;
     border-radius: 6px;
@@ -21,13 +21,11 @@ export const LoginForm = styled.form`
 
 `;
 
-
 export const LoginInput = styled.input`
     
     background-color: #f4f9fb;
     border: 0;
     box-shadow: 0px 1px 1px 0px #e6e9ec;
-
 
     padding: 0.5rem 0.75rem;
     font-size: 1rem;
@@ -36,13 +34,13 @@ export const LoginInput = styled.input`
     background-image: none;
     background-clip: padding-box;
     
-    margin: 10px 20% 30px;
+    margin: 10px 25% 30px;
     
 
 `;
 export const Button =styled.button`
     
-    background: #09A59A !important;
+    background: #09A59A ;
     border: 1px solid #09A59A !important;
     font-weight: 600 !important;
     outline: none !important;
@@ -57,33 +55,48 @@ export const Button =styled.button`
     background-clip: padding-box;
     
     border-radius: 20px;
-    margin: 0 20% 30px;
+    margin: 0 30% 30px;
     
     cursor:pointer;
+
+    &:hover{
+        background:#fff;
+        color: #09A59A;
+    }
+
 `;
 
+
 export const StyledLink = styled(Link)`
+    
+    width:512px;
+
+    margin: 0 auto; 
+    padding-top: 5%;
+    padding-bottom: 5%;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 10px 21px #e7eeef;
+
     display:flex;
     justify-content:center;
     text-decoration:none;
 
-    background: #09A59A !important;
-    border: 1px solid #09A59A !important;
     font-weight: 600 !important;
     outline: none !important;
-    color: #fff;
+    color: #7c6cda;
 
-    padding: 0.5rem 0.75rem;
+    /* padding: 0.5rem 0.75rem; */
     font-size: 1rem;
     line-height: 1.25;
-    
-    
-    background-image: none;
-    background-clip: padding-box;
-    
-    border-radius: 20px;
-    margin: 0 20% 30px;
+
     cursor:pointer;
+
+    &:hover{
+        background: #afaaca;
+        color: #fff;
+    }
+    
 `;
 
 
@@ -127,9 +140,8 @@ export const Deny = styled.div`
 
 export const HeadName = styled.h1`
     text-align: center;
-    
 `;
 
 export const LabelName = styled.label`
-    margin: 0 20% 30px;
+    margin: 0 25% 10px;
 `;
