@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
 import {TiHomeOutline} from 'react-icons/ti';
-import { Manager,Target, Reference, Popper } from 'react-popper';
 
     const HeaderBar = styled.div`
     background: rgba(0,0,0,.35);   
@@ -62,28 +61,6 @@ const HeaderBar_item = styled.div`
     flex: auto;
     box-sizing: border-box;
 `;
-
-
-
-const Example = () => (
-  <Manager>
-    <Reference>
-      {({ ref }) => (
-        <button type="button" ref={ref}>
-          Reference element
-        </button>
-      )}
-    </Reference>
-    <Popper placement="right">
-      {({ ref, style, placement, arrowProps }) => (
-        <div ref={ref} style={style} data-placement={placement}>
-          Popper element
-          <div ref={arrowProps.ref} style={arrowProps.style} />
-        </div>
-      )}
-    </Popper>
-  </Manager>
-);
 
 function Header(){
 

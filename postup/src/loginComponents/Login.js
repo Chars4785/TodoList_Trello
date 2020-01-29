@@ -22,9 +22,9 @@ function Login(){
         {list.map(t =>(<ListForm props={t}></ListForm>))}
         <AddList onClick={makeList} add={add}>
         {
-          add ?
+          add &&
           <AddListInput type="text" autoFocus placeholder="이름을 적어주세요"/>            
-          :<StyleMdADD />
+          
         }
         </AddList>
       </Board>

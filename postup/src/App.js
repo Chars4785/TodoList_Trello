@@ -3,7 +3,7 @@ import {createGlobalStyle} from 'styled-components';
 import styled from 'styled-components';
 import {Switch,Route} from 'react-router-dom';
 import {LoginPage,Login,New} from './loginComponents';
-import {Header} from './Components';
+import Header from './Components/Header';
 
 const GlobalStyle = createGlobalStyle`
     body {
@@ -12,7 +12,6 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const MenuLine = styled.div`
-    
     padding: 10px;
     display: flex;
     opacity: 0.5;
